@@ -1,0 +1,15 @@
+{% extends 'master.html' %}
+
+
+{% block content %}
+  <h1>All Posts</h1>
+
+  {% for post in posts %}
+  <di>
+    <h4>{{ post.title }}</h4>
+    <p>{{ post.text }}</p>
+  </di>
+  {% endfor %}
+  
+  {% include 'blog/recent_posts.html' %}
+{% endblock %}
