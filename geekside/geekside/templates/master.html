@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeekSide - {% block title %}El lugar más geek del internet{% endblock %}</title>
+    <!-- bootstrap -->
+    <style>
+      body {
+        background-color: beige;
+      }
+    </style>
+  </head>
+  <body>
+    {% include 'header.html' %}
+    {% block content %}
+    <!-- nada... se reemplazará desde la plantilla hija -->
+    {% endblock %}
+  </body>
+</html>

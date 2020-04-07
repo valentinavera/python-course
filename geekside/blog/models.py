@@ -19,6 +19,12 @@ class Post(models.Model):
   class Meta:
     verbose_name = _('publicación')
     verbose_name_plural = _('publicaciones')
+    # db_table = 'publicaciones'
+    # indexes = (models.Index(fields=('excerpt', 'author')))
+    # unique_together = ('title', 'author')
+    # abstract = True
+    # ordering  = ('-created_at',)
+
 
   def __str__(self):
     return self.title
