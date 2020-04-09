@@ -1,0 +1,11 @@
+{% extends 'master.html' %}
+
+{% block content %}
+<!-- información del post -->
+<h1 class="border-bottom border-gray pb-2 mb-0">{{ object.title }}</h1>
+<!-- el código html no se renderiza, usamos
+autoscape para que django lo renderice -->
+{% autoescape off %} 
+  {{ object.text }}
+{% endautoescape %}
+{% endblock %}
