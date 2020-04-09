@@ -1,6 +1,8 @@
-<div style="background-color: burlywood;">
-  <h3>Recent posts</h3>
-  {% for recent_post in recent_posts %}
-    <p>{{ recent_post.title }}</p>
-  {% endfor %}
+<h6 class="border-bottom border-gray pb-2 mb-0">Top rated posts</h6>
+{% for recent_post in recent_posts %}
+<div class="media text-muted pt-3">
+  <p class="media-body pb-3 mb-0 small">
+    <strong class="d-block text-gray-dark">{{ recent_post.title }}</strong>
+  </p>
 </div>
+{% endfor %}
