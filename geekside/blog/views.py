@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from .models import Post
 from django.views import View
 from django.views.generic import (ListView, DetailView, CreateView,
-  UpdateView)
+  UpdateView, FormView)
+from .forms import PostForm, PostModelForm
 # ListView -> Lista de de objetos
 # DetailView -> Único objeto
 # CreateView -> Crear objeto
@@ -72,8 +73,8 @@ class PostCreateView(CreateView):
   model = Post
   template_name = 'blog/new_post.html'
   success_url = '/'
-  fields = '__all__'
-  # fields = ['title', 'text', 'excerpt', 'author']
+  # fields = '__all__'
+  fields = ['title', 'text', 'excerpt', 'author', 'related_image']
   # exclude = (...)
 
 class PostUpdateView(UpdateView):
@@ -83,3 +84,22 @@ class PostUpdateView(UpdateView):
   success_url = '/'
   # exclude = ('author',)
   fields = ['title', 'text', 'excerpt', 'is_active']
+
+class CreatePostFormView(FormView):
+  form_class = PostForm
+  template_name = 'blog/new_post.html'
+  success_url = '/'
+
+  def form_valid(self, form):
+    # procesar la info validada del formulario
+    form.save()
+    return super().form_valid(form)
+
+class CreatePostModelFormView(FormView):
+  form_class = PostModelForm
+  template_name = 'blog/new_post.html'
+  success_url = '/'
+
+  def form_valid(self, form):
+    form.save()
+    return super().form_valid(form)
