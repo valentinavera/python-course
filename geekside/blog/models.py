@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 class Post(models.Model):
-  title = models.CharField(_('título'), max_length=150)
+  title = models.CharField(_('título'), max_length=150) # varchar
   text = models.TextField(_('texto'))
   excerpt = models.CharField(_('resumen'), max_length=120, blank=True)
   is_active = models.BooleanField(_('activo'), default=True)
@@ -15,6 +15,9 @@ class Post(models.Model):
     auto_now=True)
   author = models.ForeignKey(User, on_delete=models.CASCADE, 
     verbose_name=_('autor'))
+  # solo almacena la ruta al archivo
+  related_image = models.ImageField(_('imágen relacionada'), upload_to='posts/',
+    null=True)
 
   class Meta:
     verbose_name = _('publicación')
@@ -24,7 +27,6 @@ class Post(models.Model):
     # unique_together = ('title', 'author')
     # abstract = True
     # ordering  = ('-created_at',)
-
 
   def __str__(self):
     return self.title
