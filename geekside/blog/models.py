@@ -15,6 +15,7 @@ class Post(models.Model):
     auto_now=True)
   author = models.ForeignKey(User, on_delete=models.CASCADE, 
     verbose_name=_('autor'))
+  related_image = models.ImageField(_('imágen relacionada'), upload_to='posts/', null=True)
 
   class Meta:
     verbose_name = _('publicación')

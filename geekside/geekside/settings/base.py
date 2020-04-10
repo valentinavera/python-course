@@ -102,3 +102,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/' #path desde donde se sirven los archivos
+MEDIA_ROOT = os.path.join(BASE_DIR,'media') #carpeta donde se almacenan los archivos subidos por el usuario
