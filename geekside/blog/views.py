@@ -69,6 +69,9 @@ class PostDetailView(DetailView):
     # también podemos sobrescribir el contexto de la plantilla
     return super().get_context_data(**kwargs)
 
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+@method_decorator(login_required, name='dispatch')
 class PostCreateView(CreateView):
   model = Post
   template_name = 'blog/new_post.html'
@@ -99,6 +102,16 @@ class CreatePostModelFormView(FormView):
   form_class = PostModelForm
   template_name = 'blog/new_post.html'
   success_url = '/'
+
+  def form_valid(self, form):
+    form.save()
+    return super().form_valid(form)
+
+from django.contrib.auth.forms import UserCreationForm
+class SignupView(FormView):
+  form_class = UserCreationForm
+  template_name = 'auth/login.html'
+  success_url = '/login'
 
   def form_valid(self, form):
     form.save()
