@@ -105,3 +105,8 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/' # path de la URL se sirven los archivos
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #directorio que almacena los archivos subidos
+
+LOGIN_REDIRECT_URL = 'blog.posts'
+LOGIN_URL = 'login'
+
+# USER_MODEL = 'user.User'
