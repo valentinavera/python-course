@@ -29,7 +29,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog'
+    'graphene_django',
+    'blog',
+    'apis'
 ]
 
 MIDDLEWARE = [
@@ -108,5 +110,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #directorio que almacena los archiv
 
 LOGIN_REDIRECT_URL = 'blog.posts'
 LOGIN_URL = 'login'
+
+GRAPHENE = {
+    'SCHEMA': 'apis.schema.ROOT_SCHEMA'
+}
 
 # USER_MODEL = 'user.User'

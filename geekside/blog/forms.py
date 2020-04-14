@@ -32,7 +32,7 @@ class PostModelForm(forms.ModelForm):
     fields = ('title', 'excerpt', 'text', 'author', 'is_active')
     # exclude = (...)
 
-  def save(self, commit=True):
+  def save(self, commit=True): # debe probarse
     # sobrescribe la lógica de registrar en BD del formulario
     # agregamos la lógica que necesitamos en mi funcionalidad
     if self.cleaned_data['stars'] > 3:

@@ -26,4 +26,5 @@ urlpatterns = [
         name='login'),
     path('logout', auth_views.logout_then_login, name='logout'),
     # path('signup', auth_views.)
+    path('api/', include('apis.urls'), name='api')
 ]
