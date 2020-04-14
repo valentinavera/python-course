@@ -6,6 +6,8 @@ from .models import Category
 def disable_category(sender, instance, created, *args, **kwargs):
   if not created:
     instance.post_set.update(is_active=False)
+    # test case false
+  # print("error simulado")
 
 @receiver(post_save, sender=Category)
 def enable_category(sender, instance, created, *args, **kwargs):
