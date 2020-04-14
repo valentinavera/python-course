@@ -5,6 +5,9 @@ from django.views import View
 from django.views.generic import (ListView, DetailView, CreateView,
   UpdateView, FormView)
 from .forms import PostForm, PostModelForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 # ListView -> Lista de de objetos
 # DetailView -> Único objeto
@@ -70,6 +73,7 @@ class PostDetailView(DetailView):
     # también podemos sobrescribir el contexto de la plantilla
     return super().get_context_data(**kwargs)
 
+@method_decorator(login_required, name='dispatch')
 class PostCreateView(CreateView):
   model = Post
   template_name = 'blog/new_post.html'
@@ -105,7 +109,6 @@ class CreatePostModelFormView(FormView):
     form.save()
     return super().form_valid(form)
 
-from django.contrib.auth.forms import UserCreationForm
 class SignupView(FormView):
   form_class = UserCreationForm
   template_name = 'auth/login.html'
