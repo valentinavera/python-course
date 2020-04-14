@@ -4,6 +4,18 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+class Category(models.Model):
+  name = models.CharField(_('nombre'), max_length=64)
+  description =models.TextField(_('descripción'))
+  is_active = models.BooleanField(_('activa'), default=True)
+
+  class Meta:
+    verbose_name = _('categoría')
+    verbose_name_plural = _('categorias')
+
+  def __str__(self):
+    return self.name
+
 class Post(models.Model):
   title = models.CharField(_('título'), max_length=150)
   text = models.TextField(_('texto'))
@@ -16,6 +28,7 @@ class Post(models.Model):
   author = models.ForeignKey(User, on_delete=models.CASCADE, 
     verbose_name=_('autor'))
   related_image = models.ImageField(_('imágen relacionada'), upload_to='posts/', null=True)
+  category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name=_('categoría'))
 
   class Meta:
     verbose_name = _('publicación')

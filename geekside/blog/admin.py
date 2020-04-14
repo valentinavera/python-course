@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post, Category
 
 # admin.site.register(Post)
 @admin.register(Post)
@@ -8,3 +8,5 @@ class PostAdmin(admin.ModelAdmin):
   list_filter = ('is_active', 'author')
   # fields = ('title', 'text', 'excerpt')
   exclude = ('is_active',)
+
+admin.site.register(Category)

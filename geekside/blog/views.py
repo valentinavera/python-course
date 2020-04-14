@@ -104,3 +104,13 @@ class CreatePostModelFormView(FormView):
   def form_valid(self, form):
     form.save()
     return super().form_valid(form)
+
+from django.contrib.auth.forms import UserCreationForm
+class SignupView(FormView):
+  form_class = UserCreationForm
+  template_name = 'auth/login.html'
+  success_url = '/login'
+
+  def form_valid(self, form):
+    form.save()
+    return super().form_valid(form)

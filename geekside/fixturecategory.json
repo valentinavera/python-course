@@ -1,0 +1,16 @@
+[
+    {
+        "model": "blog.Category",
+        "fields": {
+        "name": "Star Wars",
+        "description": "Posts of Star Wars"
+        }
+    },
+    {
+        "model": "blog.Category",
+        "fields": {
+        "name": "Rick & Morty",
+        "description": "Posts of Rick & Morty"
+        }
+    }
+]
