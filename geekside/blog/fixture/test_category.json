@@ -1,0 +1,24 @@
+[
+    {
+        "model": "auth.User",
+        "pk": 1,
+        "fields": {
+            "username": "testuser",
+            "email": "user@test.com",
+            "date_joined": "2020-04-14"
+        }
+    },
+    {
+        "model": "blog.Category",
+        "pk": 1,
+        "fields": {
+            "name": "Test category",
+            "description": "Test category description"
+        }
+    },
+
+    {
+        "model": "blog.Posts",
+        "pk": 1
+    }
+]
