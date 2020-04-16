@@ -1,0 +1,15 @@
+{% extends 'blog/widgets/master.html' %}
+
+{% block widget-style %}text-white bg-purple{% endblock %}
+
+{% block widget-title-content %}To rated posts{% endblock %}
+
+{% block widget-content %}
+  {% for recent_post in recent_posts %}
+  <p class="card-text">
+    <a href="{% url 'blog.post' recent_post.id %}" class="text-light">
+    {{ recent_post.title }}
+    </a>
+  </p>
+  {% endfor %}
+{% endblock %}

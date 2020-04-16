@@ -1,0 +1,9 @@
+<div class="card {% block widget-style %}{% endblock %} mb-3">
+  {% block widget-title %}
+  <div class="card-header">{% block widget-title-content %}{% endblock %}</div>
+  {% endblock %}
+  <div class="card-body">
+    <!-- <h5 class="card-title">Dark card title</h5> -->
+    {% block widget-content %}{% endblock %}
+  </div>
+</div>

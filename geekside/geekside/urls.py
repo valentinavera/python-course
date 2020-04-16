@@ -16,15 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls'), name='blog'), # localhost:8000/
     # path('hola') # localhost:8000/hola
     # localhost:8000/blog/post-1
-    path('login', auth_views.LoginView.as_view(template_name='auth/login.html'),
+    path('login', auth_views.LoginView.as_view(template_name='bootstrap4/auth/login.html'),
         name='login'),
     path('logout', auth_views.logout_then_login, name='logout'),
     # path('signup', auth_views.)
     path('api/', include('apis.urls'), name='api')
 ]
+
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

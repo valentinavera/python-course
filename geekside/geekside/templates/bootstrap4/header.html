@@ -1,0 +1,13 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-md bg-purple-gradient navbar-dark">
+  <a class="navbar-brand" href="{% url 'blog.posts' %}">
+    <img src="{% static 'geekside.png' %}" width="30" height="30" class="d-inline-block align-top" alt="Home">
+    Geek Side
+  </a>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav ml-auto">
+      {% include 'bootstrap4/header_menu.html' %}
+    </div>
+  </div>
+</nav>
