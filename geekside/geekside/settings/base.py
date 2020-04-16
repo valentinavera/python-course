@@ -29,8 +29,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'graphene_django',
     'blog',
-    'graphene_django'
+    'apis'
 ]
 
 MIDDLEWARE = [
@@ -109,3 +110,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media') #carpeta donde se almacenan los arch
 
 LOGIN_REDIRECT_URL='blog.posts'
 LOGIN_URL='login'
+
+GRAPHENE = {
+    'SCHEMA': 'apis.schema.ROOT_SCHEMA'
+}
