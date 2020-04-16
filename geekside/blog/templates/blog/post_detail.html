@@ -1,11 +1,23 @@
-{% extends 'master.html' %}
+{% extends 'blog/blog.master.html' %}
 
-{% block content %}
+{% block left-col-title %}{{ object.title }}{% endblock %}
+
+{% block left-col %}
 <!-- información del post -->
-<h1 class="border-bottom border-gray pb-2 mb-0">{{ object.title }}</h1>
 <!-- el código html no se renderiza, usamos
 autoscape para que django lo renderice -->
-{% autoescape off %} 
+<div class="border-bottom mb-3 py-2">
+  Published on <strong>{{ object.category.name }}</strong> at <italy>{{ object.created_at }}</italy>
+</div>
+{% autoescape off %}
   {{ object.text }}
 {% endautoescape %}
+{% endblock %}
+
+
+
+{% block right-col %}
+  {% include 'blog/widgets/author.html' %}
+  {% include 'blog/widgets/categories.html' %}
+  {% include 'blog/widgets/top_rated_posts.html' %}
 {% endblock %}

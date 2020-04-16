@@ -1,0 +1,16 @@
+{% extends 'blog/widgets/master.html' %}
+{% load static %}
+
+{% block widget-title-content %}About the author{% endblock %}
+
+{% block widget-content %}
+  <img src="{% static 'geekside.png' %}" class="profile-img d-block m-auto" />
+  <div class="text-center">
+    <p class="card-text">
+      {{ object.author.full_name }}
+    </p>
+    <p class="card-text">
+      @{{ object.author.username }}
+    </p>
+  </div>
+{% endblock %}
