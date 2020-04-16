@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Post
+from .models import Post, Category
 from django.views import View
 from django.views.generic import (ListView, DetailView, CreateView,
   UpdateView, FormView)
@@ -24,7 +24,8 @@ def first_view(request): # debe ser probada
 def all_posts(request):
   contexto = {
     'posts': Post.objects.all(),
-    'recent_posts': Post.objects.all().order_by('-created_at')[:2]
+    'recent_posts': Post.objects.all().order_by('-created_at')[:2],
+    'categories': Category.objects.all().order_by('name')
   }
   return render(request, 'blog/posts.html', context=contexto)
 
@@ -55,11 +56,12 @@ class AllPostsListView(ListView):
     context = super().get_context_data(**kwargs)
     # debe estar definido en las HU
     context['recent_posts'] = Post.objects.all().order_by('-created_at')[:2]
+    context['categories'] = Category.objects.all().order_by('name')
     return context
 
 class PostDetailView(DetailView):
   model = Post
-  template = 'blog/post.html'
+  template_name = 'blog/post_detail.html'
 
   # def get_object(self, queryset=None):
   #   # requiere el ID
@@ -68,18 +70,26 @@ class PostDetailView(DetailView):
 
   def get_context_data(self, **kwargs):
     # también podemos sobrescribir el contexto de la plantilla
-    return super().get_context_data(**kwargs)
+    context = super().get_context_data(**kwargs)
+    context['recent_posts'] = Post.objects.all().order_by('-created_at')[:2]
+    context['categories'] = Category.objects.all().order_by('name')
+    return context
 
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 @method_decorator(login_required, name='dispatch')
 class PostCreateView(CreateView):
   model = Post
+  form_class = PostModelForm
   template_name = 'blog/new_post.html'
   success_url = '/'
   # fields = '__all__'
-  fields = ['title', 'text', 'excerpt', 'author', 'related_image']
+  # fields = ['title', 'text', 'excerpt', 'author', 'related_image']
   # exclude = (...)
+
+  def form_valid(self, form):
+    form.instance.author = self.request.user
+    return super().form_valid(form)
 
 class PostUpdateView(UpdateView):
   model = Post
@@ -96,6 +106,7 @@ class CreatePostFormView(FormView):
 
   def form_valid(self, form):
     # procesar la info validada del formulario
+    form.instance.author = self.request.user
     form.save()
     return super().form_valid(form)
 
@@ -105,13 +116,14 @@ class CreatePostModelFormView(FormView):
   success_url = '/'
 
   def form_valid(self, form):
+    form.instance.author = self.request.user
     form.save()
     return super().form_valid(form)
 
 from django.contrib.auth.forms import UserCreationForm
 class SignupView(FormView):
   form_class = UserCreationForm
-  template_name = 'auth/login.html'
+  template_name = 'bootstrap4/auth/signup.html'
   success_url = '/login'
 
   def form_valid(self, form):

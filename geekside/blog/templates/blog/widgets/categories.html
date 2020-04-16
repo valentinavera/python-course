@@ -1,0 +1,15 @@
+{% extends 'blog/widgets/master.html' %}
+
+{% block widget-style %}text-white bg-purple-2{% endblock %}
+
+{% block widget-title-content %}Categories{% endblock %}
+
+{% block widget-content %}
+  {% for category in categories %}
+  <p class="card-text">
+    <a href="" class="text-light">
+    {{ category.name }}
+    </a>
+  </p>
+  {% endfor %}
+{% endblock %}

@@ -1,0 +1,8 @@
+<a class="nav-item nav-link active" href="{% url 'blog.posts' %}">Home</a>
+<a class="nav-item nav-link active" href="#">Categories</a>
+{% if not user.is_authenticated %}
+<a class="nav-item nav-link active" href="{% url 'login' %}">Sign In</a>
+{% else %}
+<a class="nav-item nav-link active" href="{% url 'blog.new' %}">Write a post</a>
+<a class="nav-item nav-link active" href="{% url 'logout' %}">Log out</a>
+{% endif %}
