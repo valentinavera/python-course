@@ -22,7 +22,9 @@ urlpatterns = [
     path('', include('blog.urls'), name='blog'), # localhost:8000/
     # path('hola') # localhost:8000/hola
     # localhost:8000/blog/post-1
-    path('login', auth_views.LoginView.as_view(template_name='auth/login.html'), name='login' ),
+    path('login', auth_views.LoginView.as_view(template_name='auth/login.html'),
+        name='login'),
     path('logout', auth_views.logout_then_login, name='logout'),
-    path('api', include('apis.url'), name='api')
+    # path('signup', auth_views.)
+    path('api/', include('apis.urls'), name='api')
 ]

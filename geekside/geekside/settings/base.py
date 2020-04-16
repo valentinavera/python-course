@@ -105,12 +105,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/media/' #path desde donde se sirven los archivos
-MEDIA_ROOT = os.path.join(BASE_DIR,'media') #carpeta donde se almacenan los archivos subidos por el usuario
+MEDIA_URL = '/media/' # path de la URL se sirven los archivos
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #directorio que almacena los archivos subidos
 
-LOGIN_REDIRECT_URL='blog.posts'
-LOGIN_URL='login'
+LOGIN_REDIRECT_URL = 'blog.posts'
+LOGIN_URL = 'login'
 
 GRAPHENE = {
     'SCHEMA': 'apis.schema.ROOT_SCHEMA'
 }
+
+# USER_MODEL = 'user.User'

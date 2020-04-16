@@ -17,7 +17,7 @@ from django.utils.decorators import method_decorator
 # FormView -> Procesamiento de formularios
 
 # vista basada en función
-def first_view(request):
+def first_view(request): # debe ser probada
   # logica...
   # return HttpResponse("<h1>No vives de ensalada ##</h1>")
   contexto = {
@@ -35,7 +35,7 @@ def all_posts(request):
 # vistas basadas en clases
 class AllPostsView(View):
   
-  def get(self, request):
+  def get(self, request): # debe probarse
     # lógica
     contexto = {
       'posts': Post.objects.all(),
@@ -53,10 +53,11 @@ class AllPostsListView(ListView):
   model = Post
   template_name = 'blog/posts_list_view.html'
 
-  def get_context_data(self, **kwargs):
+  def get_context_data(self, **kwargs): # debe probarse
     # 1. ejecutar la consulta de todos los registros de Post
     # 2. agregar un nuevo objeto de Post recientes
     context = super().get_context_data(**kwargs)
+    # debe estar definido en las HU
     context['recent_posts'] = Post.objects.all().order_by('-created_at')[:2]
     return context
 
@@ -78,8 +79,8 @@ class PostCreateView(CreateView):
   model = Post
   template_name = 'blog/new_post.html'
   success_url = '/'
-  fields = '__all__'
-  # fields = ['title', 'text', 'excerpt', 'author']
+  # fields = '__all__'
+  fields = ['title', 'text', 'excerpt', 'author', 'related_image']
   # exclude = (...)
 
 class PostUpdateView(UpdateView):
@@ -93,10 +94,10 @@ class PostUpdateView(UpdateView):
 class CreatePostFormView(FormView):
   form_class = PostForm
   template_name = 'blog/new_post.html'
-  success_url='/'
+  success_url = '/'
 
   def form_valid(self, form):
-    #procesar la info validada del formulario
+    # procesar la info validada del formulario
     form.save()
     return super().form_valid(form)
 

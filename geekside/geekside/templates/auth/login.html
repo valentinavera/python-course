@@ -2,8 +2,14 @@
 
 {% block content %}
 <form method="post">
+<<<<<<< HEAD
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Login" />
+=======
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Login" />
+>>>>>>> 6656be494282dd45a50b4c7be6345f9a331cfdb9
 </form>
 {% endblock %}
