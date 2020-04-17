@@ -3,6 +3,7 @@ from blog.models import Category as CategoryModel, Post as PostModel
 from graphene import relay, ObjectType
 from graphene_django.filter import DjangoFilterConnectionField
 from graphene_django.forms.mutation import DjangoModelFormMutation
+from blog.forms import CategoryModelForm
 
 class Category(DjangoObjectType):
     #nodo del grafo
@@ -32,3 +33,11 @@ class Query(ObjectType):
     category = relay.Node.Field(Category)
     posts = DjangoFilterConnectionField(Post)
     post = relay.Node.Field(Post)
+
+class CategoryMutation(DjangoModelFormMutation):
+    class Meta:
+        form_class = CategoryModelForm
+
+
+class Mutation(ObjectType):
+    category = CategoryMutation.Field()
