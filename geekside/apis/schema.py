@@ -1,5 +1,6 @@
 from graphene import ObjectType, String, Schema
 from .blog_schema import Query as BlogQuery, Mutation as BlogMutation
+from .auth_schema import Mutation as AuthMutation
 
 class Query(BlogQuery):
     pass
@@ -8,7 +9,7 @@ class Query(BlogQuery):
     # def resolve_hello(root, info, name, *args, **kwargs):
     #     return 'Hello %s' % name
 
-class Mutation(BlogMutation):
+class Mutation(BlogMutation, AuthMutation):
     pass
 
 ROOT_SCHEMA = Schema(query=Query, mutation=Mutation)
